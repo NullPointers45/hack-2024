@@ -70,9 +70,9 @@ const Login = () => {
           </button>
           <div className="text-center text-gray-400 mt-4">
             Didn't have an account?
-            <Link to="/signin">
+            {/* <Link to="/signin"> */}
               <span className="underline hover:text-white transition duration-300">Signin</span>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
       </div>

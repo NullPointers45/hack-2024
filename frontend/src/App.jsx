@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Footer from './components/shared/Footer'
 import Header from './components/shared/Header'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/prelogin/Home'
 import Login from './components/prelogin/Login'
 import Signup from './components/prelogin/Signup'

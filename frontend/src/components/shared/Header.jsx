@@ -1,6 +1,6 @@
 // Header.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import LogoWhiteBg from "../../assets/Logo_BlackBgless.png"; // Ensure the correct path to the logo
 
 const Header = () => {
@@ -113,18 +113,18 @@ const Header = () => {
           >
             Company
           </a>
-          <Link
+          {/* <Link
             to="/login"
-          >
+          > */}
             <button className="text-white hover:text-indigo-400 transition duration-300 font-bold cursor-pointer"
             >Login</button>
-          </Link>
-          <Link
+          {/* </Link> */}
+          {/* <Link
             to="/signup"
             className="text-white hover:text-indigo-400 transition duration-300 font-bold cursor-pointer"
-          >
+          > */}
             Signin
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </>

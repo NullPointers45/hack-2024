@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {ToastContainer, toast} from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 
 const Signup = () => {
@@ -17,20 +17,20 @@ const Signup = () => {
     confirmPassword: ""
   });
 
-  const sendData = ()=>{
-    if(userData.username == "" || userData.email == "" || userData.password == "" || userData.confirmPassword == ""){
+  const sendData = () => {
+    if (userData.username == "" || userData.email == "" || userData.password == "" || userData.confirmPassword == "") {
       toast.error('Fill all the details',
         {
           autoclose: 1000,
-          theme:"dark"
+          theme: "dark"
         }
 
       );
     }
-    else if(userData.password != userData.confirmPassword){
+    else if (userData.password != userData.confirmPassword) {
       toast.error('Password didn\'t match');
     }
-    else{
+    else {
       console.log(userData)
       toast.success('Signin successfully');
     }
@@ -97,12 +97,13 @@ const Signup = () => {
           </button>
           <div className="text-center text-gray-400 mt-4">
             Already have an account?
-            <Link to="/login">
-              <span
-                className="underline hover:text-white transition duration-300"
-              >
-                Login
-              </span></Link>
+            {/* <Link to="/login"> */}
+            <span
+              className="underline hover:text-white transition duration-300"
+            >
+              Login
+            </span>
+            {/* </Link> */}
           </div>
         </div>
       </div>
