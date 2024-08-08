@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState("password");
+  const nav = useNavigate()
 
-  useEffect(() => { }, [
-    showPassword
-  ]);
+
+  useEffect(() => { 
+    if(localStorage.getItem("userToken")){
+      nav("/")
+    }
+  }, [ showPassword, nav]);
 
   const [userData, setUserData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    role:"user1"
   });
 
   const sendData = () => {
-    if (userData.username == "" || userData.email == "" || userData.password == "" || userData.confirmPassword == "") {
+    if (userData.name == "" || userData.email == "" || userData.password == "") {
       toast.error('Fill all the details',
         {
           autoclose: 1000,
@@ -32,13 +36,37 @@ const Signup = () => {
     }
     else {
       console.log(userData)
+      fetch("http://localhost:5555/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.error) {
+            toast.error(data.error);
+          } else {
+            console.log(data);
+            nav("/");
+            toast.success(data.message);
+          }
+        })
+        .catch((error) => {
+          // Handle network errors
+          console.error("Error signing in:", error);
+          toast.error("Network error, please try again.");
+        });
       toast.success('Signin successfully');
     }
   }
 
   return (
     <>
-      <div className="flex justify-center items-center min-h-[calc(80vh-160px)] bg-gray-900">
+      <div className="flex justify-center items-center min-h-screen bg-gray-900">
         <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 shadow-md rounded-xl">
           <h1 className="text-center text-white text-3xl font-bold mb-6">
             Register
@@ -97,13 +125,13 @@ const Signup = () => {
           </button>
           <div className="text-center text-gray-400 mt-4">
             Already have an account?
-            {/* <Link to="/login"> */}
+            <Link to="/login">
             <span
               className="underline hover:text-white transition duration-300"
             >
               Login
             </span>
-            {/* </Link> */}
+            </Link>
           </div>
         </div>
       </div>

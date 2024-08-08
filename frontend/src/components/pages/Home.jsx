@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = ()=>{
+    const nav = useNavigate();
+    useEffect(() => { 
+        if(!localStorage.getItem("userToken")){
+          nav("/login")
+        }
+      }, [nav]);
+    
     return (
         <>
             <h1 className="text-2xl">Home Page</h1>

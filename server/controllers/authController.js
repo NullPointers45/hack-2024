@@ -29,7 +29,7 @@ const signup= async (req,res)=>{
             role:role
         })
 
-        const token = jwt.sign({email :result.email , id : result._id},SECRET_KEY )//{expiresIn : '1h'}
+        const token = jwt.sign({email :result.email , id : result._id},process.env.JWT_SECRET_KEY )//{expiresIn : '1h'}
 
         res.status(201).json({USER:result,token : token ,  message:"Registered Successfully"});
 
@@ -47,6 +47,7 @@ const signin= async (req,res)=>{
         res.status(422).json({error :  "Please enter email and Password"});
     }
 
+
     try{
         const existinguser = await usermodel.findOne({email:email});
         
@@ -61,8 +62,7 @@ const signin= async (req,res)=>{
         if(!existingpassword){
             return res.status(404).json({error:"Invalid Credentials"});
         }
-        const token = jwt.sign({email :existinguser.email , id : existinguser._id},SECRET_KEY )//{expiresIn : '1h'}
-
+        const token = jwt.sign({email :existinguser.email , id : existinguser._id},process.env.JWT_SECRET_KEY )//{expiresIn : '1h'}
         res.status(201).json({user: existinguser, token : token ,message:"Signed in Successfully"});
 
 

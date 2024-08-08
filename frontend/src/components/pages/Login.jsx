@@ -1,33 +1,64 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
+import {useCookies} from "react-cookie";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
+  const nav = useNavigate()
+  const [cookies] = useCookies([])
 
-  useEffect(() => { }, [
-    showPassword
-  ]);
+  useEffect(() => { 
+    if(localStorage.getItem("userToken")){
+      nav("/")
+    }
+  }, [ showPassword, nav]);
 
   const [userData, setUserData] = useState({
-    username: "",
+    email: "",
     password: ""
   });
 
   const sendData = () => {
-    if(userData.username == "" || userData.password == ""){
+    if(userData.email == "" || userData.password == ""){
       toast.error("Fill all the details")
     }
     else{
       console.log(userData)
-      toast.success("Login Successfully")
+      fetch("http://localhost:5555/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.error) {
+            toast.error(data.error);
+          } else {
+            console.log(data);
+            localStorage.setItem("userToken",data.token)
+            nav("/");
+            toast.success(data.message);
+          }
+        })
+        .catch((error) => {
+          // Handle network errors
+          console.error("Error signing in:", error);
+          toast.error("Network error, please try again.");
+        });
+      
     }
   }
 
   return (
     <>
-      <div className="flex justify-center items-center min-h-[calc(85vh-160px)] bg-gray-900">
+      <div className="flex justify-center items-center min-h-screen bg-gray-900">
+      {/* min-h-[calc(85vh-160px)] */}
         <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 shadow-md rounded-xl">
           <h1 className="text-center text-white text-3xl font-bold mb-6">
             Login
@@ -37,7 +68,7 @@ const Login = () => {
               className="bg-transparent border border-gray-600 text-white p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               type="text"
               onChange={(e) => {
-                setUserData({ ...userData, username: e.target.value })
+                setUserData({ ...userData, email: e.target.value })
               }}
               placeholder="Enter Email"
             />
@@ -70,9 +101,9 @@ const Login = () => {
           </button>
           <div className="text-center text-gray-400 mt-4">
             Didn't have an account?
-            {/* <Link to="/signin"> */}
-              <span className="underline hover:text-white transition duration-300">Signin</span>
-            {/* </Link> */}
+            <Link to="/signup">
+              <span className="underline hover:text-white transition duration-300">Signup</span>
+            </Link>
           </div>
         </div>
       </div>
