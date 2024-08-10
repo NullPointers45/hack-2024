@@ -1,47 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState("password");
-  const nav = useNavigate()
+  const nav = useNavigate();
 
-
-  useEffect(() => { 
-    if(localStorage.getItem("userToken")){
-      nav("/")
+  useEffect(() => {
+    if (localStorage.getItem("userToken")) {
+      nav("/");
     }
-  }, [ showPassword, nav]);
+  }, [showPassword, nav]);
 
   const [userData, setUserData] = useState({
     name: "",
     email: "",
+    contact: "",
     password: "",
-    role:"user1"
+    role: "",
   });
 
   const sendData = () => {
-    if (userData.name == "" || userData.email == "" || userData.password == "") {
-      toast.error('Fill all the details',
-        {
-          autoclose: 1000,
-          theme: "dark"
-        }
-
-      );
-    }
-    else if (userData.password != userData.confirmPassword) {
-      toast.error('Password didn\'t match');
-    }
-    else {
-      console.log(userData)
+    if (
+      userData.name === "" ||
+      userData.email === "" ||
+      userData.password === "" ||
+      userData.contact === ""
+    ) {
+      toast.error("Fill all the details", {
+        autoclose: 1000,
+        theme: "dark",
+      });
+    } else if (userData.password !== userData.confirmPassword) {
+      toast.error("Password didn't match");
+    } else {
+      console.log(userData);
       fetch("http://localhost:5555/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       })
         .then((res) => {
           return res.json();
@@ -52,17 +52,17 @@ const Signup = () => {
           } else {
             console.log(data);
             nav("/");
-            toast.success(data.message);
+            
+            localStorage.setItem("userToken",data.token)
+            toast.success("Signin successfully");
           }
         })
         .catch((error) => {
-          // Handle network errors
           console.error("Error signing in:", error);
           toast.error("Network error, please try again.");
         });
-      toast.success('Signin successfully');
     }
-  }
+  };
 
   return (
     <>
@@ -76,7 +76,7 @@ const Signup = () => {
               className="bg-transparent border border-gray-600 text-white p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               type="text"
               onChange={(e) => {
-                setUserData({ ...userData, username: e.target.value })
+                setUserData({ ...userData, name: e.target.value });
               }}
               placeholder="Enter Your Name"
             />
@@ -84,22 +84,46 @@ const Signup = () => {
               className="bg-transparent border border-gray-600 text-white p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               type="text"
               onChange={(e) => {
-                setUserData({ ...userData, email: e.target.value })
+                setUserData({ ...userData, email: e.target.value });
               }}
               placeholder="Enter Email"
             />
             <input
               className="bg-transparent border border-gray-600 text-white p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              type={showPassword}
+              type="text"
               onChange={(e) => {
-                setUserData({ ...userData, password: e.target.value })
+                setUserData({ ...userData, contact: e.target.value });
               }}
-              placeholder="Create Password"
-            /><input
+              placeholder="Enter Phone"
+            />
+            <select
+              className="bg-transparent border border-gray-600 text-white p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none"
+              onChange={(e) => {
+                setUserData({ ...userData, role: e.target.value });
+              }}
+            >
+              <option className="bg-gray-800 text-gray-400" defaultValue={""} disabled>
+                Select Role
+              </option>
+              <option className="bg-gray-800 text-white" value={"Farmer"}>Farmer</option>
+              <option className="bg-gray-800 text-white" value={"Buyer"}>Buyer</option>
+              <option className="bg-gray-800 text-white" value={"Transport"}>
+                Logistics/Transport
+              </option>
+            </select>
+            <input
               className="bg-transparent border border-gray-600 text-white p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               type={showPassword}
               onChange={(e) => {
-                setUserData({ ...userData, confirmPassword: e.target.value })
+                setUserData({ ...userData, password: e.target.value });
+              }}
+              placeholder="Create Password"
+            />
+            <input
+              className="bg-transparent border border-gray-600 text-white p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              type={showPassword}
+              onChange={(e) => {
+                setUserData({ ...userData, confirmPassword: e.target.value });
               }}
               placeholder="Re-enter Password"
             />
@@ -109,7 +133,9 @@ const Signup = () => {
               <input
                 type="checkbox"
                 onClick={(e) => {
-                  e.target.checked ? setShowPassword("text") : setShowPassword("password")
+                  e.target.checked
+                    ? setShowPassword("text")
+                    : setShowPassword("password");
                 }}
                 name=""
                 id=""
@@ -126,11 +152,9 @@ const Signup = () => {
           <div className="text-center text-gray-400 mt-4">
             Already have an account?
             <Link to="/login">
-            <span
-              className="underline hover:text-white transition duration-300"
-            >
-              Login
-            </span>
+              <span className="underline hover:text-white transition duration-300">
+                Login
+              </span>
             </Link>
           </div>
         </div>

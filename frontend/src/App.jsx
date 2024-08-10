@@ -20,7 +20,7 @@ function App() {
                 <div className="flex-1 mx-20 py-8 text-white text-justify">
                   <Home />
                 </div>
-                <Footer />
+                {/* <Footer /> */}
               </>
             }
           />
@@ -43,7 +43,7 @@ function App() {
                 <div className="flex-1 mx-20 py-8 text-white text-justify">
                   <Profile />
                 </div>
-                <Footer />
+                {/* <Footer /> */}
               </>
             }
           />
