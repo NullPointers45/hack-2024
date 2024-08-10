@@ -42,7 +42,7 @@ const Header = () => {
         <div className="flex items-center justify-center">
           <div className="text-[40px] font-bold ms-6">फसल Bazaar</div>
           <div className="text-3xl mx-6">|</div>
-          <div className="text-lg font-medium mt-2 italic">कृषि Se, किसान Tak</div>
+          <div className="text-lg font-medium mt-2 italic">कृषि Se, किसान nishiht</div>
         </div>
       </div>
 
