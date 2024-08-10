@@ -10,7 +10,7 @@ const Header = () => {
   const dropdownRef = useRef(null);
 
   const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev);
+    setIsMenuOpen((prev) => !prev);
   };
 
   const handleClickOutside = (event) => {
@@ -30,118 +30,69 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className="relative flex items-center justify-between p-4 bg-gray-800 text-white">
-      {/* Left Section: Logo and Titles */}
-      <div className="flex items-center flex-shrink-0 space-x-4">
+    <nav className="flex items-center justify-between p-4 bg-gray-800 text-white relative">
+      <div className="flex items-center space-x-4">
+        {/* Logo Section */}
         <img
-          className="h-20 w-20 object-contain"
-          style={{ padding: '4px', backgroundColor: 'white', borderRadius: '50%' }} // Adding a white background for contrast
+          className="h-24 w-24 rounded-full object-contain"
+          style={{ padding: "4px", backgroundColor: "white", borderRadius: "50%" }} // Adding a white background for contrast
           src={LogoFinal}
           alt="Logo"
         />
-        <div className="flex flex-col justify-center">
-          <div className="text-3xl font-bold">फसल Bazaar</div>
-          <div className="text-lg mt-1 italic">कृषि Se, किसान Tak</div>
+        <div className="flex items-center justify-center">
+          <div className="text-[40px] font-bold ms-6">फसल Bazaar</div>
+          <div className="text-3xl mx-6">|</div>
+          <div className="text-lg font-medium mt-2 italic">कृषि Se, किसान Tak</div>
         </div>
       </div>
 
-      {/* Right Section: User Menu and Dropdown */}
-      <div className="flex items-center space-x-4">
-        <div className="relative">
-          <button
-            onClick={toggleMenu}
-            className="flex items-center text-white focus:outline-none"
-          >
-            <FaUserCircle className="text-3xl" />
-          </button>
-
-          {isMenuOpen && (
-            <div
-              className="absolute top-full right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg z-10"
-              ref={dropdownRef}
-            >
-              <ul className="py-1">
-                <li>
-                  <a
-                    href="#product"
-                    className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                  >
-                    Product
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#company"
-                    className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                  >
-                    Company
-                  </a>
-                </li>
-                {!isUser ? (
-                  <>
-                    <li>
-                      <Link
-                        to="/login"
-                        className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                      >
-                        Log in
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/signup"
-                        className="block px-4 py-2 hover:bg-gray-200 transition duration-300"
-                      >
-                        Signup
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <li>
-                    <Link
-                      to="/profile"
-                    >
-                      <span className="block px-4 py-2 hover:bg-gray-200 transition duration-300">My Profile</span>
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </div>
-          )}
-        </div>
-
+      {/* Profile Section - Positioned at the end */}
+      <div className="ml-auto relative">
         <button
           onClick={toggleMenu}
-          className="text-white focus:outline-none md:hidden"
+          className="flex items-center text-white focus:outline-none"
         >
-          {isMenuOpen ? <MdClose className="text-2xl" /> : <MdMenu className="text-2xl" />}
+          <FaUserCircle className="text-3xl" />
         </button>
 
         {isMenuOpen && (
           <div
-            className="absolute top-16 right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg z-20"
+            className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
             ref={dropdownRef}
           >
             <ul className="py-1">
               <li>
-                <a href="#product" className="block px-4 py-2 hover:bg-gray-200 transition duration-300">
+                <a
+                  href="#product"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                >
                   Product
                 </a>
               </li>
+
               <li>
-                <a href="#company" className="block px-4 py-2 hover:bg-gray-200 transition duration-300">
+                <a
+                  href="#company"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                >
                   Company
                 </a>
               </li>
               {!isUser ? (
                 <>
                   <li>
-                    <Link to="/login" className="block px-4 py-2 hover:bg-gray-200 transition duration-300">
+                    <Link
+                      to="/login"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                    >
                       Log in
                     </Link>
                   </li>
                   <li>
-                    <Link to="/signup" className="block px-4 py-2 hover:bg-gray-200 transition duration-300">
+                    <Link
+                      to="/signup"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                    >
                       Signup
                     </Link>
                   </li>
@@ -149,7 +100,7 @@ const Header = () => {
               ) : (
                 <li>
                   <Link to="/profile">
-                    <span className="block px-4 py-2 hover:bg-gray-200 transition duration-300">
+                    <span className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">
                       My Profile
                     </span>
                   </Link>
