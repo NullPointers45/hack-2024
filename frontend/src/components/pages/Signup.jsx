@@ -8,10 +8,17 @@ const Signup = () => {
   const nav = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("userToken")) {
-      nav("/");
+    if (localStorage.getItem("user")) {
+      setUser(localStorage.getItem("user"));
+      if (user.role == "Farmer") {
+        nav("/farmer/listings")
+      }
+      else {
+        nav("/farmer/listings/add-edit")
+      }
     }
   }, [showPassword, nav]);
+
 
   const [userData, setUserData] = useState({
     name: "",
@@ -51,9 +58,17 @@ const Signup = () => {
             toast.error(data.error);
           } else {
             console.log(data);
-            nav("/");
-            
-            localStorage.setItem("userToken",data.token)
+            if (localStorage.getItem("user")) {
+              setUser(localStorage.getItem("user"));
+              if (user.role == "Farmer") {
+                nav("/farmer/listings")
+              }
+              else {
+                nav("/farmer/listings/add-edit")
+              }
+            }
+
+            localStorage.setItem("user", data)
             toast.success("Signin successfully");
           }
         })

@@ -9,7 +9,7 @@ const ListingsForm = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="flex flex-col">
                             <label htmlFor="cropName" className="text-white font-medium mb-2">
-                                Crop Name <span className="text-red-700">*</span>
+                                Crop Name<span className="text-red-700">*</span>
                             </label>
                             <input
                                 id="cropName"
