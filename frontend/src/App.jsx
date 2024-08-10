@@ -10,6 +10,7 @@ import EditProfile from "./components/pages/EditProfile"; // Import the EditProf
 import ListingsFarmer from "./components/farmer/pages/listings";
 import ListingsForm from "./components/farmer/forms/listingForm";
 import ListingsBuyer from "./components/buyer/pages/listings";
+import BuyerForm from "./components/buyer/forms/buyerForm";
 
 function App() {
   return (
@@ -17,6 +18,18 @@ function App() {
       <div className="flex flex-col min-h-screen bg-gray-900">
         <Routes>
           <Route path="/farmer">
+          <Route
+              path="/farmer"
+              element={
+                <>
+                  <Header />
+                  <div className="flex-1 text-white text-justify">
+                    <Home />
+                  </div>
+                  {/* <Footer /> */}
+                </>
+              }
+            />
             <Route
               path="/farmer/listings"
               element={
@@ -56,7 +69,18 @@ function App() {
                 </>
               }
             />
+            <Route
+              path="/buyer/form/profile"
+              element={
+                <>
+                  <div className="flex-1 mx-20 py-8 text-white text-justify">
+                    <BuyerForm />
+                  </div>
+                </>
+              }
+            />
           </Route>
+          
 
           <Route
             path="/"

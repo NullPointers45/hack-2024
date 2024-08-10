@@ -46,7 +46,7 @@ const Header = () => {
       </div>
 
       {/* Profile Section - Positioned at the end */}
-      <div className="ml-auto relative">
+      <div className="ml-auto relative me-6">
         <button
           onClick={toggleMenu}
           className="flex items-center text-white focus:outline-none"
