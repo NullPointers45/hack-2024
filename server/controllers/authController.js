@@ -31,7 +31,24 @@ const signup= async (req,res)=>{
 
         const token = jwt.sign({email :result.email , id : result._id},process.env.JWT_SECRET_KEY )//{expiresIn : '1h'}
 
+<<<<<<< HEAD
         res.status(201).json({user:result,token : token ,  message:"Registered Successfully"});
+=======
+        const savedUser = await result.save();
+
+        // Redirect user to their respective role page
+        if (role === 'Farmer') {
+            res.redirect(`/api/farmers/${savedUser._id}`);
+        } else if (role === 'Buyer') {
+            res.redirect(`/api/buyers/${savedUser._id}`);
+        } else if (role === 'Transport') {
+            res.redirect(`/api/transports/${savedUser._id}`);
+        }
+
+        res.status(201).json({USER:result,token : token ,  message:"Registered Successfully"});
+>>>>>>> dc51b0814a03bbbb3d7601cb9b6a233ab7f059e4
+
+
 
     }
     catch(error){

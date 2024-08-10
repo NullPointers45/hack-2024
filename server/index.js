@@ -4,6 +4,8 @@ const mongoose= require("mongoose");
 const env = require("dotenv");
 const authRouter = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
+const farmerrouter = require("./routes/farmerRoutes");
+const croprouter = require("./routes/cropRoute");
 
 env.config();
 
@@ -11,6 +13,10 @@ const app= express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/farmer",farmerrouter)
+app.use("/crop",croprouter)
+
 
 mongoose.connect(
     process.env.MONGO_URL,
