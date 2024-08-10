@@ -9,13 +9,17 @@ const userSchema= mongoose.Schema({
         type:String,
         require:true
     },
+    contact:{
+        type:String,
+        require:true
+    },
     password:{
         type:String,
         require:true
     },
     role:{
         type:String,
-        enum:['user1','user2'],
+        enum:['Farmer','Buyer','Transport'],
         required: true
     }
 },{timestamps:true});
