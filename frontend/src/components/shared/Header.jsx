@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LogoFinal from "../../assets/Logo_Final.png";
-import { MdMenu, MdClose } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
@@ -35,7 +34,7 @@ const Header = () => {
         {/* Logo Section */}
         <img
           className="h-24 w-24 rounded-full object-contain"
-          style={{ padding: "4px", backgroundColor: "white", borderRadius: "50%" }} // Adding a white background for contrast
+          style={{ backgroundColor: "white", borderRadius: "50%" }}
           src={LogoFinal}
           alt="Logo"
         />
@@ -52,7 +51,7 @@ const Header = () => {
           onClick={toggleMenu}
           className="flex items-center text-white focus:outline-none"
         >
-          <FaUserCircle className="text-3xl" />
+          <FaUserCircle className="text-5xl" /> {/* Increased size of the profile icon */}
         </button>
 
         {isMenuOpen && (

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../shared/Header";  // Importing the header you provided
+import heroimage from "../../assets/heroimage.png";
+import Farmer from "../../assets/Farmer.jpg";
+import Buyer from "../../assets/Buyer.jpg";
 
 const HomePage = () => {
   return (
@@ -9,11 +11,18 @@ const HomePage = () => {
       {/* <Header /> */}
 
       {/* Hero Section */}
-      <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: "url('/path/to/hero-image.jpg')" }}>
-        <div className="bg-black bg-opacity-50 h-full flex flex-col justify-center items-center text-center text-white p-4">
-          <h1 className="text-5xl font-bold mb-4">Empowering Farmers with Fair Crop Prices</h1>
-          <p className="text-xl mb-8">A platform connecting farmers directly with buyers.</p>
-          <Link to="/signup" className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg text-lg">
+      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url(${heroimage})` }}>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4 bg-black bg-opacity-40">
+          <h1 className="text-5xl font-bold mb-4">
+            Empowering Farmers with Fair Crop Prices
+          </h1>
+          <p className="text-xl mb-16">
+            A platform connecting farmers directly with buyers.
+          </p>
+          <Link
+            to="/signup"
+            className="bg-green-500 hover:bg-black text-white py-3 px-6 rounded-lg text-lg"
+          >
             Get Started
           </Link>
         </div>
@@ -70,18 +79,32 @@ const HomePage = () => {
         <h2 className="text-3xl font-bold mb-8">What Our Users Say</h2>
         <div className="flex flex-wrap justify-around items-center">
           <div className="w-80 p-4">
-            <img src="/path/to/farmer.jpg" alt="Farmer" className="rounded-full mx-auto mb-4" />
-            <p>"This platform has revolutionized the way I sell my crops. No more middlemen!" - Farmer A</p>
+            <img 
+              src={Farmer} 
+              alt="Farmer" 
+              className="rounded-full mx-auto mb-4 w-40 h-40 object-cover" 
+            />
+            <p>
+              "This platform has revolutionized the way I sell my crops. No more
+              middlemen!" - Farmer A
+            </p>
           </div>
           <div className="w-80 p-4">
-            <img src="/path/to/buyer.jpg" alt="Buyer" className="rounded-full mx-auto mb-4" />
-            <p>"I get fresh produce directly from farmers at the best prices." - Buyer B</p>
+            <img 
+              src={Buyer} 
+              alt="Buyer" 
+              className="rounded-full mx-auto mb-4 w-40 h-40 object-cover" 
+            />
+            <p>
+              "I get fresh produce directly from farmers at the best prices." -
+              Buyer B
+            </p>
           </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 bg-green-500 text-white text-center">
+      <section className="py-16 bg--500 text-white text-center">
         <h2 className="text-4xl font-bold mb-4">Join the Future of Agriculture</h2>
         <p className="text-xl mb-8">Start bidding and selling today.</p>
         <Link to="/signup" className="bg-white text-green-500 py-3 px-6 rounded-lg text-lg">

@@ -8,6 +8,7 @@ import Chatbot from "./components/pages/Chatbot";
 import Profile from "./components/pages/Profile";
 import ListingsFarmer from "./components/farmer/pages/listings";
 import ListingsForm from "./components/farmer/forms/listingForm";
+import ListingsBuyer from "./components/buyer/pages/listings";
 
 function App() {
   return (
@@ -40,12 +41,31 @@ function App() {
               }
             />
           </Route>
+
+          <Route path="buyer">
+          <Route
+              path="/buyer/listings"
+              element={
+                <>
+                  <Header />
+                  <div className="flex-1 mx-20 py-8 text-white text-justify">
+                    <ListingsBuyer />
+                  </div>
+                  {/* <Footer /> */}
+                </>
+              }
+            />
+
+          </Route>
+
+
+
           <Route
             path="/"
             element={
               <>
                 <Header />
-                <div className="flex-1 mx-20 py-8 text-white text-justify">
+                <div className="flex-1   text-white text-justify">
                   <Home />
                 </div>
                 {/* <Footer /> */}
