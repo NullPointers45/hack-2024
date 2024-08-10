@@ -68,12 +68,6 @@ const Listings = () => {
                     </div>
                     <div className="flex items-center justify-between mt-3">
                         <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">View certifications :</div>
-                            <div className="underline text-blue-400"><a href="#">View</a></div>
-                        </div>
-                    </div>
-                    <div className="flex items-center justify-between mt-3">
-                        <div className="flex items-center justify-between">
                             <div className="font-extrabold  text-xl pe-2">Bid Status :</div>
                             <div>Active/Expired/Completed</div>
                         </div>
