@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import heroimage from "../../assets/heroimage.png";
 import Farmer from "../../assets/Farmer.jpg";
+import { FaUser, FaSeedling, FaDollarSign, FaCheckCircle } from "react-icons/fa";
+import { FaHandshake, FaClock, FaLock, FaTruck } from "react-icons/fa";
+
 import Buyer from "../../assets/Buyer.jpg";
 
 const HomePage = () => {
@@ -29,47 +32,71 @@ const HomePage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white text-center">
-        <h2 className="text-3xl font-bold mb-8">Why Choose Our Platform?</h2>
-        <div className="flex flex-wrap justify-around items-center">
-          <div className="w-80 p-4">
-            <div className="text-2xl font-bold mb-2">Direct Bidding</div>
-            <p>Connects farmers and buyers without middlemen.</p>
+      <section className="py-16 bg-gray-50 text-center">
+        <h2 className="text-4xl font-bold mb-12 text-gray-800">Why Choose Our Platform?</h2>
+        <div className="flex justify-between items-stretch overflow-x-auto">
+          <div className="w-64 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105 mx-4">
+            <div className="text-5xl mb-4 text-green-600">
+              <FaHandshake />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Direct Bidding</div>
+            <p className="text-gray-600">Connects farmers and buyers without middlemen.</p>
           </div>
-          <div className="w-80 p-4">
-            <div className="text-2xl font-bold mb-2">Real-time Auctions</div>
-            <p>Live bidding for fresh crops.</p>
+          <div className="w-64 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105 mx-4">
+            <div className="text-5xl mb-4 text-green-600">
+              <FaClock />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Real-time Auctions</div>
+            <p className="text-gray-600">Live bidding for fresh crops.</p>
           </div>
-          <div className="w-80 p-4">
-            <div className="text-2xl font-bold mb-2">Secure Payments</div>
-            <p>Ensures safe and timely transactions.</p>
+          <div className="w-64 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105 mx-4">
+            <div className="text-5xl mb-4 text-green-600">
+              <FaLock />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Secure Payments</div>
+            <p className="text-gray-600">Ensures safe and timely transactions.</p>
           </div>
-          <div className="w-80 p-4">
-            <div className="text-2xl font-bold mb-2">Logistics Support</div>
-            <p>Integrated transport options for easy delivery.</p>
+          <div className="w-64 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105 mx-4">
+            <div className="text-5xl mb-4 text-green-600">
+              <FaTruck />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Logistics Support</div>
+            <p className="text-gray-600">Integrated transport options for easy delivery.</p>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
       <section className="py-16 bg-gray-100">
-        <h2 className="text-3xl font-bold text-center mb-8">How It Works</h2>
-        <div className="flex flex-wrap justify-around items-center">
-          <div className="w-60 p-4 text-center">
-            <div className="text-2xl font-bold mb-2">Step 1</div>
-            <p>Register as a Farmer or Buyer.</p>
+        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">How It Works</h2>
+        <div className="flex flex-wrap justify-center items-start">
+          <div className="w-full md:w-1/4 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105">
+            <div className="text-4xl mb-4 text-green-600">
+              <FaUser />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Step 1</div>
+            <p className="text-gray-600">Register as a Farmer or Buyer.</p>
           </div>
-          <div className="w-60 p-4 text-center">
-            <div className="text-2xl font-bold mb-2">Step 2</div>
-            <p>Post or Bid on Crops.</p>
+          <div className="w-full md:w-1/4 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105 mt-8 md:mt-0">
+            <div className="text-4xl mb-4 text-green-600">
+              <FaSeedling />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Step 2</div>
+            <p className="text-gray-600">Post or Bid on Crops.</p>
           </div>
-          <div className="w-60 p-4 text-center">
-            <div className="text-2xl font-bold mb-2">Step 3</div>
-            <p>Secure Payment and Delivery.</p>
+          <div className="w-full md:w-1/4 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105 mt-8 md:mt-0">
+            <div className="text-4xl mb-4 text-green-600">
+              <FaDollarSign />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Step 3</div>
+            <p className="text-gray-600">Secure Payment and Delivery.</p>
           </div>
-          <div className="w-60 p-4 text-center">
-            <div className="text-2xl font-bold mb-2">Step 4</div>
-            <p>Complete the Transaction.</p>
+          <div className="w-full md:w-1/4 p-6 text-center bg-white shadow-lg rounded-lg hover:bg-green-50 transition duration-300 transform hover:scale-105 mt-8 md:mt-0">
+            <div className="text-4xl mb-4 text-green-600">
+              <FaCheckCircle />
+            </div>
+            <div className="text-xl font-semibold mb-2 text-gray-800">Step 4</div>
+            <p className="text-gray-600">Complete the Transaction.</p>
           </div>
         </div>
       </section>
@@ -104,7 +131,7 @@ const HomePage = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 bg--500 text-white text-center">
+      <section className="py-16 bg-grey-500 text-white text-center">
         <h2 className="text-4xl font-bold mb-4">Join the Future of Agriculture</h2>
         <p className="text-xl mb-8">Start bidding and selling today.</p>
         <Link to="/signup" className="bg-white text-green-500 py-3 px-6 rounded-lg text-lg">

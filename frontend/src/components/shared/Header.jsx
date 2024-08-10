@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LogoFinal from "../../assets/Logo_Final.png";
-import { FaUserCircle, FaProductHunt, FaBuilding, FaSignInAlt, FaUserPlus, FaUserAlt } from "react-icons/fa";
+import { FaUserCircle, FaProductHunt, FaBuilding, FaSignInAlt, FaUserPlus, FaUserAlt, FaHome } from "react-icons/fa";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,6 +60,15 @@ const Header = () => {
             ref={dropdownRef}
           >
             <ul className="py-1">
+              <li>
+                <Link
+                  to="/"
+                  className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300"
+                >
+                  <FaHome className="mr-2 text-gray-600" />
+                  Home
+                </Link>
+              </li>
               <li>
                 <a
                   href="#product"
