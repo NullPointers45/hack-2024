@@ -6,7 +6,8 @@ import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Chatbot from "./components/pages/Chatbot";
 import Profile from "./components/pages/Profile";
-import ListingsFarmer from "./components/farmer/listings";
+import ListingsFarmer from "./components/farmer/pages/listings";
+import ListingsForm from "./components/farmer/forms/listingForm";
 
 function App() {
   return (
@@ -21,6 +22,18 @@ function App() {
                   <Header />
                   <div className="flex-1 mx-20 py-8 text-white text-justify">
                     <ListingsFarmer />
+                  </div>
+                  {/* <Footer /> */}
+                </>
+              }
+            />
+            <Route
+              path="/farmer/listings/add-edit"
+              element={
+                <>
+                  <Header />
+                  <div className="flex-1 mx-20 py-8 text-white text-justify">
+                    <ListingsForm />
                   </div>
                   {/* <Footer /> */}
                 </>
