@@ -6,12 +6,27 @@ import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Chatbot from "./components/pages/Chatbot";
 import Profile from "./components/pages/Profile";
+import ListingsFarmer from "./components/farmer/listings";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen bg-gray-900">
         <Routes>
+          <Route path="/farmer">
+            <Route
+              path="/farmer/listings"
+              element={
+                <>
+                  <Header />
+                  <div className="flex-1 mx-20 py-8 text-white text-justify">
+                    <ListingsFarmer />
+                  </div>
+                  {/* <Footer /> */}
+                </>
+              }
+            />
+          </Route>
           <Route
             path="/"
             element={
