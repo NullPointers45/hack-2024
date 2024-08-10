@@ -1,14 +1,12 @@
-// Header.js
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import LogoWhiteBg from "../../assets/Logo_BlackBgless.png";
+import LogoFinal from "../../assets/Logo_Final.png";
+import { MdMenu, MdClose } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
-import { GoRocket } from "react-icons/go";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUser, setIsUser] = useState(false);
-
   const dropdownRef = useRef(null);
 
   const toggleMenu = () => {
@@ -32,89 +30,87 @@ const Header = () => {
   }, []);
 
   return (
-    <>
-      <nav className="flex items-center justify-between p-2 bg-gray-800">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <img className="h-24 w-24" src={LogoWhiteBg} alt="Logo" />
-          <label className="text-3xl ps-3">Null Pointers | Hackathon 2024</label>
-        </div>
-
+    <nav className="flex items-center justify-between p-4 bg-gray-800 text-white relative">
+      <div className="flex items-center space-x-4">
+        {/* Logo Section */}
+        <img
+          className="h-24 w-24 rounded-full object-contain"
+          style={{ padding: "4px", backgroundColor: "white", borderRadius: "50%" }} // Adding a white background for contrast
+          src={LogoFinal}
+          alt="Logo"
+        />
         <div className="flex items-center justify-center">
-          <div className="flex items-center justify-center me-10 text-2xl text-white">
-            <Link to="/chatbot">
-              <button className="flex items-center justify-center bg-white text-gray-800 py-2 px-4 rounded-md">
-                <span className="me-2">AI</span>
-                <GoRocket className="text-2xl" />
-              </button>
-            </Link>
-
-          </div>
-          <div className="relative">
-            <button
-              onClick={toggleMenu}
-              className="flex items-center text-white focus:outline-none pe-7"
-            >
-              <FaUserCircle className="text-3xl" />
-            </button>
-
-            {isMenuOpen && (
-              <div
-                className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
-                ref={dropdownRef}
-              >
-                <ul className="py-1">
-                  <li>
-                    <a
-                      href="#product"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
-                    >
-                      Product
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#company"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
-                    >
-                      Company
-                    </a>
-                  </li>
-                  {!isUser ? (
-                    <>
-                      <li>
-                        <Link
-                          to="/login"
-                          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
-                        >
-                          Log in
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/signup"
-                          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
-                        >
-                          Signup
-                        </Link>
-                      </li>
-                    </>
-                  ) : (
-                    <li>
-                      <Link
-                        to="/profile"
-                      >
-                        <span className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">My Profile</span>
-                      </Link>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            )}
-          </div>
+          <div className="text-[40px] font-bold ms-6">फसल Bazaar</div>
+          <div className="text-3xl mx-6">|</div>
+          <div className="text-lg font-medium mt-2 italic">कृषि Se, किसान Tak</div>
         </div>
-      </nav>
-    </>
+      </div>
+
+      {/* Profile Section - Positioned at the end */}
+      <div className="ml-auto relative">
+        <button
+          onClick={toggleMenu}
+          className="flex items-center text-white focus:outline-none"
+        >
+          <FaUserCircle className="text-3xl" />
+        </button>
+
+        {isMenuOpen && (
+          <div
+            className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
+            ref={dropdownRef}
+          >
+            <ul className="py-1">
+              <li>
+                <a
+                  href="#product"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                >
+                  Product
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#company"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                >
+                  Company
+                </a>
+              </li>
+              {!isUser ? (
+                <>
+                  <li>
+                    <Link
+                      to="/login"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                    >
+                      Log in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/signup"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                    >
+                      Signup
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Link to="/profile">
+                    <span className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">
+                      My Profile
+                    </span>
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 };
 
