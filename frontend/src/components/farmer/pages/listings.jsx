@@ -1,105 +1,138 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Listings = () => {
+    const [showConfirm, setShowConfirm] = useState(false);
+
+    const handleDeleteClick = () => {
+        setShowConfirm(true);
+    };
+
+    const handleConfirmYes = () => {
+        console.log("Data is deleted");
+        setShowConfirm(false);
+    };
+
+    const handleConfirmNo = () => {
+        setShowConfirm(false);
+    };
+
     return (
         <>
-            <div className="flex items-center justify-between">
-                <div className="text-3xl">My Listings</div>
+            <div className="flex items-center justify-between mb-5">
+                <h2 className="text-3xl font-bold">My Listings</h2>
                 <a href="#">
                     <button
-                        className="bg-white text-gray-800 py-3 px-6 rounded-md"
-                        type="submit"
+                        className="bg-white text-gray-800 py-3 px-6 rounded-md shadow-md"
+                        type="button"
                     >
                         New Listings
                     </button>
                 </a>
             </div>
-            <div className="mt-5">
-                <div className="border border-white rounded p-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">Crop ID :</div>
-                            <div>asd956ac9w65a1c9ws56z2x2c9</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold text-xl pe-2">Variety :</div>
-                            <div>Pulses</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold text-xl pe-2">Quantity (in quintals) :</div>
-                            <div>1500 qui.</div>
-                        </div>
+            <div className="border border-gray-200 rounded-md p-4 shadow-md">
+                <div className="grid grid-cols-2 gap-4">
+                    {/* Listing details */}
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Crop ID:</span>
+                        <span className="ml-2">asd956ac9w65a1c9ws56z2x2c9</span>
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">Opening Bid :</div>
-                            <div>₹ 12,000 per quintal</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold text-xl pe-2">Harvest Date :</div>
-                            <div>10/08/2024</div>
-                        </div>
-                        <div className="flex items-center justify-between me-44">
-                        </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Harvest Date:</span>
+                        <span className="ml-2">10/08/2024</span>
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">Bid Starting Date :</div>
-                            <div>12/08/2024</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">Bid Ending Date :</div>
-                            <div>20/08/2024</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">Bid Span :</div>
-                            <div>8 days</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">Days Left :</div>
-                            <div>5 days</div>
-                        </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Crop Type:</span>
+                        <span className="ml-2">Pulses</span>
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                        <div className="flex">
-                            <div className="font-extrabold text-xl pe-2 w-32">Description</div>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem fuga corrupti nulla modi reprehenderit tempora consequatur reiciendis temporibus? Rerum rem doloribus at labore, nisi a perspiciatis eos et sed facilis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem fuga corrupti nulla modi reprehenderit tempora consequatur reiciendis temporibus? Rerum rem doloribus at labore, nisi a perspiciatis eos et sed facilis. </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Crop Name:</span>
+                        <span className="ml-2">Wheat</span>
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">View certifications :</div>
-                            <div className="underline text-blue-400"><a href="#">View</a></div>
-                        </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Quantity (in quintals):</span>
+                        <span className="ml-2">1500 qui.</span>
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                        <div className="flex items-center justify-between">
-                            <div className="font-extrabold  text-xl pe-2">Bid Status :</div>
-                            <div>Active/Expired/Completed</div>
-                        </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Opening Bid:</span>
+                        <span className="ml-2">₹ 12,000 per quintal</span>
                     </div>
-                    <div className="flex items-end justify-end mt-3">
-                        <div className="flex items-center justify-between">
-                            <a href="#">
-                                <button
-                                    className="bg-green-700 text-white py-3 px-6 rounded-md me-4"
-                                    type="submit"
-                                >
-                                    Edit
-                                </button>
-                            </a>
-                            <a href="#">
-                                <button
-                                    className="bg-red-700 text-white py-3 px-6 rounded-md"
-                                    type="submit"
-                                >
-                                    Delete
-                                </button>
-                            </a>
-                        </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Bid Starting Date:</span>
+                        <span className="ml-2">12/08/2024</span>
+                    </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Bid Ending Date:</span>
+                        <span className="ml-2">20/08/2024</span>
+                    </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Bid Span:</span>
+                        <span className="ml-2">8 days</span>
+                    </div>
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Days Left:</span>
+                        <span className="ml-2">5 days</span>
+                    </div>
+                </div>
+                <div className="mt-5">
+                    <h3 className="font-bold text-xl">Description:</h3>
+                    <p className="mt-2 text-justify">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem fuga corrupti nulla modi reprehenderit tempora consequatur reiciendis temporibus? Rerum rem doloribus at labore, nisi a perspiciatis eos et sed facilis.
+                    </p>
+                </div>
+                <div className="mt-5 flex items-center justify-between">
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">View Certifications:</span>
+                        <a href="#" className="underline text-blue-400 ml-2">View</a>
+                    </div>
+                </div>
+                <div className="mt-5 flex items-center justify-between">
+                    <div className="flex items-center">
+                        <span className="font-bold text-xl">Bid Status:</span>
+                        <span className="ml-2">Active/Expired/Completed</span>
+                    </div>
+                    <div className="flex space-x-2">
+                        <a href="#">
+                            <button
+                                className="bg-green-700 text-white py-2 px-4 rounded-md"
+                                type="button"
+                            >
+                                Edit
+                            </button>
+                        </a>
+                        <button
+                            className="bg-red-700 text-white py-2 px-4 rounded-md"
+                            type="button"
+                            onClick={handleDeleteClick}
+                        >
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
+
+            {/* Confirmation Pop-up */}
+            {showConfirm && (
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-white rounded-md shadow-lg p-8">
+                        <h3 className="text-xl font-bold mb-4">Confirm Deletion</h3>
+                        <p className="mb-6">Are you sure you want to delete this listing?</p>
+                        <div className="flex justify-end space-x-4">
+                            <button
+                                className="bg-gray-500 text-white py-2 px-4 rounded-md"
+                                onClick={handleConfirmNo}
+                            >
+                                No
+                            </button>
+                            <button
+                                className="bg-red-700 text-white py-2 px-4 rounded-md"
+                                onClick={handleConfirmYes}
+                            >
+                                Yes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Home = ()=>{
     const nav = useNavigate();
     useEffect(() => { 
-        if(!localStorage.getItem("userToken")){
+        if(!localStorage.getItem("user")){
           nav("/login")
         }
       }, [nav]);

@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
-import {useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("password");
   const nav = useNavigate()
   const [cookies] = useCookies([])
+  const [user, setUser] = useState({});
 
-  useEffect(() => { 
-    if(localStorage.getItem("userToken")){
-      nav("/")
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setUser(localStorage.getItem("user"));
+      if (user.role == "Farmer") {
+        nav("/farmer/listings")
+      }
+      else {
+        nav("/farmer/listings/add-edit")
+      }
     }
-  }, [ showPassword, nav]);
+  }, [showPassword, nav]);
 
   const [userData, setUserData] = useState({
     email: "",
@@ -21,10 +28,10 @@ const Login = () => {
   });
 
   const sendData = () => {
-    if(userData.email == "" || userData.password == ""){
+    if (userData.email == "" || userData.password == "") {
       toast.error("Fill all the details")
     }
-    else{
+    else {
       console.log(userData)
       fetch("http://localhost:5555/signin", {
         method: "POST",
@@ -41,8 +48,14 @@ const Login = () => {
             toast.error(data.error);
           } else {
             console.log(data);
-            localStorage.setItem("userToken",data.token)
-            nav("/");
+            localStorage.setItem("user", data)
+            setUser(localStorage.getItem("user"));
+            if (user.role == "Farmer") {
+              nav("/farmer/listings")
+            }
+            else {
+              nav("/farmer/listings/add-edit")
+            }
             toast.success(data.message);
           }
         })
@@ -51,14 +64,14 @@ const Login = () => {
           console.error("Error signing in:", error);
           toast.error("Network error, please try again.");
         });
-      
+
     }
   }
 
   return (
     <>
       <div className="flex justify-center items-center min-h-screen bg-gray-900">
-      {/* min-h-[calc(85vh-160px)] */}
+        {/* min-h-[calc(85vh-160px)] */}
         <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 shadow-md rounded-xl">
           <h1 className="text-center text-white text-3xl font-bold mb-6">
             Login
