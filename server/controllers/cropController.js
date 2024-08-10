@@ -1,21 +1,21 @@
 const cropModel = require('../model/cropModel');
-const farmerModel = require('../model/farmerModel');
-
-// POST /api/crops
-
+const userModel = require('../model/authModel');
+const mongoose = require('mongoose')
+const { ObjectId } = mongoose.Types;
 const createCrop = async (req, res) => {
     try {
-        const { cropType, variety, description, quantity, priceExpectation, harvestDate, deliveryWindow, farmerId } = req.body;
+        const { cropType, variety, description, quantity, priceExpectation, harvestDate, startDate, endDate, farmerId } = req.body;
 
         // Create a new crop
-        const newCrop = new Crop({
+        const newCrop = new cropModel({
             cropType,
             variety,
             description,
             quantity,
             priceExpectation,
             harvestDate,
-            deliveryWindow,
+            startDate,
+            endDate,
             farmerId,
         });
 
@@ -23,9 +23,14 @@ const createCrop = async (req, res) => {
         const savedCrop = await newCrop.save();
 
         // Find the farmer and update the cropListings array
-        const farmer = await farmerModel.findById(farmerId);
+        const farmer = await userModel.findById(new ObjectId(farmerId));
         if (!farmer) {
             return res.status(404).json({ error: 'Farmer not found' });
+        }
+
+        // Initialize cropListings array if undefined
+        if (!farmer.cropListings) {
+            farmer.cropListings = [];
         }
 
         // Add the saved crop's ID to the farmer's cropListings array
@@ -34,6 +39,7 @@ const createCrop = async (req, res) => {
 
         res.status(201).json({ crop: savedCrop, message: 'Crop added and farmer updated successfully' });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Error adding crop' });
     }
 };

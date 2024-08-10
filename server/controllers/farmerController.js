@@ -7,7 +7,7 @@ const { json } = require("express");
 
 const createFarmer = async (req, res) => {
     try {
-        const { userId ,farmName, state, city, country } = req.body;
+        const { userId ,farmName, state, city, country , cropListings} = req.body;
 
         // Find the user who just registered
  // Or wherever you store the userId after authentication
@@ -26,16 +26,20 @@ const createFarmer = async (req, res) => {
             state:state,
             city:city,
             country:country,
+            cropListings:cropListings,
+        
             // The user schema fields are inherited
             name: user.name,
             email: user.email,
             contact: user.contact,
             password: user.password,
+            role:user.role
+
         });
 
         const savedFarmer = await newFarmer.save();
 
-        res.status(201).json(savedFarmer , {message: 'Farmer posted successfully'});
+        res.status(201).json({savedFarmer , message: 'Farmer posted successfully'});
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Error saving farmer details' });

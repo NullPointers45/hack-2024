@@ -23,12 +23,17 @@ const farmerSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Crop',
   }],
+  role: {
+    type: String,
+    default: 'Farmer',
+    required: true
+  },
   userId: {
-    // type: String,
-    // required: true
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+    type: String,
+    required: true
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: 'User',
+    // required: true,
   },
 }, { timestamps: true });
 
@@ -36,3 +41,6 @@ const farmerSchema = new mongoose.Schema({
 const Farmer = User.discriminator('Farmer', farmerSchema);
 
 module.exports = Farmer;
+// User.find({ __t: 'Farmer' }).then(farmers => {
+//   console.log(farmers);
+// });
