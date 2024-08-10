@@ -22,6 +22,11 @@ const cropSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  status:{
+    type:String,
+        enum:['Active','Expired','Completed'],
+        required: true
+  },
   startDate: {
     type: Date,
     required: true,
