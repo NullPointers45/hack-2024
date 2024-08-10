@@ -57,26 +57,4 @@ const getTransportationById = async (req, res) => {
     }
 };
 
-module.exports = {
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    createTransportation,updateTransportation,getTransportationById};
+module.exports = {createTransportation,updateTransportation,getTransportationById};
