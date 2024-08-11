@@ -11,6 +11,7 @@ import ListingsFarmer from "./components/farmer/pages/listings";
 import ListingsForm from "./components/farmer/forms/listingForm";
 import ListingsBuyer from "./components/buyer/pages/listings";
 import BuyerForm from "./components/buyer/forms/buyerForm";
+import FarmerIssues from "./components/farmer/pages/issue";
 
 function App() {
   return (
@@ -26,7 +27,6 @@ function App() {
                   <div className="flex-1 text-white text-justify">
                     <Home />
                   </div>
-                  {/* <Footer /> */}
                 </>
               }
             />
@@ -38,7 +38,6 @@ function App() {
                   <div className="flex-1 mx-20 py-8 text-white text-justify">
                     <ListingsFarmer />
                   </div>
-                  {/* <Footer /> */}
                 </>
               }
             />
@@ -50,7 +49,17 @@ function App() {
                   <div className="flex-1 mx-20 py-8 text-white text-justify">
                     <ListingsForm />
                   </div>
-                  {/* <Footer /> */}
+                </>
+              }
+            />
+            <Route
+              path="/farmer/issues"
+              element={
+                <>
+                  <Header />
+                  <div className="flex-1 mx-20 py-8 text-white text-justify">
+                    <FarmerIssues />
+                  </div>
                 </>
               }
             />
@@ -65,7 +74,6 @@ function App() {
                   <div className="flex-1 mx-20 py-8 text-white text-justify">
                     <ListingsBuyer />
                   </div>
-                  {/* <Footer /> */}
                 </>
               }
             />
@@ -90,7 +98,6 @@ function App() {
                 <div className="flex-1 text-white text-justify">
                   <Home />
                 </div>
-                {/* <Footer /> */}
               </>
             }
           />
@@ -113,7 +120,6 @@ function App() {
                 <div className="flex-1 mx-20 py-8 text-white text-justify">
                   <Profile />
                 </div>
-                {/* <Footer /> */}
               </>
             }
           />
@@ -123,9 +129,8 @@ function App() {
               <>
                 <Header />
                 <div className="flex-1 mx-20 py-8 text-white text-justify">
-                  <EditProfile /> {/* Added EditProfile route */}
+                  <EditProfile />
                 </div>
-                {/* <Footer /> */}
               </>
             }
           />
