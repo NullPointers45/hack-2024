@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 
 const bidSchema = new mongoose.Schema({
     cropId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         required: true,
         ref: 'Crop' // Assuming you have a Crop model
     },
     buyerId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         required: true,
         ref: 'Buyer'
     },

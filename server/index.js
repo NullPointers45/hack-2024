@@ -6,6 +6,8 @@ const authRouter = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 const farmerrouter = require("./routes/farmerRoutes");
 const croprouter = require("./routes/cropRoute");
+const buyerrouter = require("./routes/buyerRoutes");
+const bidrouter = require("./routes/bidRoutes");
 
 env.config();
 
@@ -16,7 +18,8 @@ app.use(express.json());
 
 app.use("/farmer",farmerrouter)
 app.use("/crop",croprouter)
-
+app.use("/buyer",buyerrouter)
+app.use("/bid",bidrouter)
 
 mongoose.connect(
     process.env.MONGO_URL,

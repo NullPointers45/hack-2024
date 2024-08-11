@@ -1,11 +1,11 @@
-const Bid = require("../models/bid");
-const Buyer = require("../models/buyer");
-const Crop = require("../models/crop");
+const Bid = require("../model/bidModel");
+const Buyer = require("../model/buyerModel");
+const Crop = require("../model/cropModel");
 
 // POST /api/bids
 const createBid = async (req, res) => {
     try {
-        const { buyerId, cropId, bidAmount } = req.body;
+        const { buyerId, cropId, bidAmount , bidStatus } = req.body;
 
         // Validate crop existence
         const crop = await Crop.findById(cropId);
@@ -23,7 +23,8 @@ const createBid = async (req, res) => {
         const newBid = new Bid({
             buyerId,
             cropId,
-            bidAmount
+            bidAmount,
+            bidStatus,
         });
 
         const savedBid = await newBid.save();

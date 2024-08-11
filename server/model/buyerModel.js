@@ -1,32 +1,41 @@
 const mongoose = require("mongoose");
-const User = require('./user');
+const User = require('./authModel'); // Base schema
 
-const buyerSchema = User.discriminator('Buyer', new mongoose.Schema({
+// Define the Buyer schema as a discriminator of the User schema
+const buyerSchema = new mongoose.Schema({
     savedListings: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Crop',
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Crop',
     }],
     bids: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Bid',
     }],
+    role: {
+      type: String,
+      default: 'Buyer',
+      required: true
+    },
     userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
+        type: String,
+        // ref: 'User',
+        required: true,
     },
     state: {
         type: String,
         required: true,
-      },
-      city: {
+    },
+    city: {
         type: String,
         required: true,
-      },
-      country: {
+    },
+    country: {
         type: String,
         required: true,
-      },
-  }, { timestamps: true }));
-  
-  module.exports = mongoose.model('Buyer', buyerSchema);
+    },
+}, { timestamps: true });
+
+// Create the Buyer model using the discriminator
+const Buyer = User.discriminator('Buyer', buyerSchema);
+
+module.exports = Buyer;
