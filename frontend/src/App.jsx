@@ -6,10 +6,12 @@ import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Chatbot from "./components/pages/Chatbot";
 import Profile from "./components/pages/Profile";
-import EditProfile from "./components/pages/EditProfile"; // Import the EditProfile component
+import EditProfile from "./components/pages/EditProfile";
 import ListingsFarmer from "./components/farmer/pages/listings";
 import ListingsForm from "./components/farmer/forms/listingForm";
 import ListingsBuyer from "./components/buyer/pages/listings";
+import FarmerForm from "./components/farmer/forms/FarmerForm";
+// import PaymentPage from "./components/pages/PaymentPage";
 import BuyerForm from "./components/buyer/forms/buyerForm";
 import FarmerIssues from "./components/farmer/pages/issue";
 
@@ -60,6 +62,18 @@ function App() {
                   <div className="flex-1 mx-20 py-8 text-white text-justify">
                     <FarmerIssues />
                   </div>
+                </>
+              }
+            />
+            <Route
+              path="/farmer/forms/FarmerForm"
+              element={
+                <>
+                  <Header />
+                  <div className="flex-1 mx-20 py-8 text-white text-justify">
+                    <FarmerForm />
+                  </div>
+                  {/* <Footer /> */}
                 </>
               }
             />
@@ -136,6 +150,7 @@ function App() {
           />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/payment" element={<PaymentPage />} /> {/* Added Payment route */}
         </Routes>
       </div>
     </BrowserRouter>
