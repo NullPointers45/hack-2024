@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import LogoFinal from "../../assets/Logo_Final.png";
-import { MdMenu, MdClose } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaProductHunt, FaBuilding, FaSignInAlt, FaUserPlus, FaUserAlt, FaHome } from "react-icons/fa";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +34,7 @@ const Header = () => {
         {/* Logo Section */}
         <img
           className="h-24 w-24 rounded-full object-contain"
-          style={{ padding: "4px", backgroundColor: "white", borderRadius: "50%" }} // Adding a white background for contrast
+          style={{ backgroundColor: "white", borderRadius: "50%" }}
           src={LogoFinal}
           alt="Logo"
         />
@@ -47,25 +46,35 @@ const Header = () => {
       </div>
 
       {/* Profile Section - Positioned at the end */}
-      <div className="ml-auto relative">
+      <div className="ml-auto relative me-6">
         <button
           onClick={toggleMenu}
           className="flex items-center text-white focus:outline-none"
         >
-          <FaUserCircle className="text-3xl" />
+          <FaUserCircle className="text-5xl" />
         </button>
 
         {isMenuOpen && (
           <div
-            className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
+            className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg z-10 border border-gray-300"
             ref={dropdownRef}
           >
             <ul className="py-1">
               <li>
+                <Link
+                  to="/"
+                  className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300"
+                >
+                  <FaHome className="mr-2 text-gray-600" />
+                  Home
+                </Link>
+              </li>
+              <li>
                 <a
                   href="#product"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                  className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300"
                 >
+                  <FaProductHunt className="mr-2 text-gray-600" />
                   Product
                 </a>
               </li>
@@ -73,8 +82,9 @@ const Header = () => {
               <li>
                 <a
                   href="#company"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                  className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300"
                 >
+                  <FaBuilding className="mr-2 text-gray-600" />
                   Company
                 </a>
               </li>
@@ -83,16 +93,18 @@ const Header = () => {
                   <li>
                     <Link
                       to="/login"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                      className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300"
                     >
+                      <FaSignInAlt className="mr-2 text-gray-600" />
                       Log in
                     </Link>
                   </li>
                   <li>
                     <Link
                       to="/signup"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300"
+                      className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300"
                     >
+                      <FaUserPlus className="mr-2 text-gray-600" />
                       Signup
                     </Link>
                   </li>
@@ -100,7 +112,8 @@ const Header = () => {
               ) : (
                 <li>
                   <Link to="/profile">
-                    <span className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">
+                    <span className="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">
+                      <FaUserAlt className="mr-2 text-gray-600" />
                       My Profile
                     </span>
                   </Link>

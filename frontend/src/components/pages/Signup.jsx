@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Signup = () => {
   const [showPassword, setShowPassword] = useState("password");
   const nav = useNavigate();
+  const [user,setUser] = useState({})
 
   useEffect(() => {
     if (localStorage.getItem("user")) {

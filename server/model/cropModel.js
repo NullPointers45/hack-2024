@@ -37,7 +37,7 @@ const cropSchema = new mongoose.Schema({
   },
   farmerId: {
     type: String,
-    ref: 'Farmer',
+    // ref: 'Farmer',
     required: true,
   },
 }, { timestamps: true });

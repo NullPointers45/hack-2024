@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Types;
 const createCrop = async (req, res) => {
     try {
-        const { cropType, variety, description, quantity, priceExpectation, harvestDate, startDate, endDate, farmerId, status } = req.body;
+        const {userId, cropType, variety, description, quantity, priceExpectation, harvestDate, startDate, endDate, farmerId, status } = req.body;
 
         // Create a new crop
         const newCrop = new cropModel({
@@ -18,14 +18,14 @@ const createCrop = async (req, res) => {
             status,
             startDate,
             endDate,
-            farmerId,
+            farmerId: userId,
         });
 
         // Save the crop to the Crop collection
         const savedCrop = await newCrop.save();
 
         // Find the farmer and update the cropListings array
-        const farmer = await farmerModel.findById(new mongoose.Types.ObjectId(farmerId));
+        const farmer = await userModel.findById(userId);
         if (!farmer) {
             return res.status(404).json({ error: 'Farmer not found' });
         }

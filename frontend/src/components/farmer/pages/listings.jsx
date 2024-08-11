@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 const Listings = () => {
     const [showConfirm, setShowConfirm] = useState(false);
+    const [selectedTab, setSelectedTab] = useState("All Bids");
+
 
     const handleDeleteClick = () => {
         setShowConfirm(true);
@@ -18,17 +20,38 @@ const Listings = () => {
 
     return (
         <>
-            <div className="flex items-center justify-between mb-5">
-                <h2 className="text-3xl font-bold">My Listings</h2>
-                <a href="#">
-                    <button
-                        className="bg-white text-gray-800 py-3 px-6 rounded-md shadow-md"
-                        type="button"
-                    >
-                        New Listings
-                    </button>
-                </a>
-            </div>
+            <nav className="p-3">
+                <div className="flex items-center justify-between space-x-4">
+                    <div>
+                        <button
+                            className={`px-3 py-2 rounded ${selectedTab === "All Bids" ? "bg-gray-200 text-gray-800" : ""}`}
+                            onClick={() => setSelectedTab("All Bids")}
+                        >
+                            My Bids
+                        </button>
+                        <button
+                            className={`px-3 py-2 rounded ${selectedTab === "Unprocess Bids" ? "bg-gray-200 text-gray-800" : ""}`}
+                            onClick={() => setSelectedTab("Unprocess Bids")}
+                        >
+                            Unprocess Bids
+                        </button>
+                        <button
+                            className={`px-3 py-2 rounded ${selectedTab === "Completed Bids" ? "bg-gray-200 text-gray-800" : ""}`}
+                            onClick={() => setSelectedTab("Completed Bids")}
+                        >
+                            Completed Bids
+                        </button>
+                    </div>
+                    <a href="#">
+                        <button
+                            className="bg-white text-gray-800 py-3 px-6 rounded-md shadow-md"
+                            type="button"
+                        >
+                            New Listings
+                        </button>
+                    </a>
+                </div>
+            </nav>
             <div className="border border-gray-200 rounded-md p-4 shadow-md">
                 <div className="grid grid-cols-2 gap-4">
                     {/* Listing details */}
@@ -114,8 +137,8 @@ const Listings = () => {
             {showConfirm && (
                 <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white rounded-md shadow-lg p-8">
-                        <h3 className="text-xl font-bold mb-4">Confirm Deletion</h3>
-                        <p className="mb-6">Are you sure you want to delete this listing?</p>
+                        <h3 className="text-xl font-bold mb-4 text-gray-800">Confirm Deletion</h3>
+                        <p className="mb-6 text-gray-800">Are you sure you want to delete this listing?</p>
                         <div className="flex justify-end space-x-4">
                             <button
                                 className="bg-gray-500 text-white py-2 px-4 rounded-md"
