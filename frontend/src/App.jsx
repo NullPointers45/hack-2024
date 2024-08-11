@@ -11,7 +11,7 @@ import ListingsFarmer from "./components/farmer/pages/listings";
 import ListingsForm from "./components/farmer/forms/listingForm";
 import ListingsBuyer from "./components/buyer/pages/listings";
 import FarmerForm from "./components/farmer/forms/FarmerForm";
-// import PaymentPage from "./components/pages/PaymentPage";
+import PaymentPage from "./components/pages/PaymentPage";
 import BuyerForm from "./components/buyer/forms/buyerForm";
 import FarmerIssues from "./components/farmer/pages/issue";
 
